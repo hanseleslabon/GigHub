@@ -191,9 +191,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
+    <Compile Include="Controllers\FollowingController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Dto\AttendanceDto.cs" />
+    <Compile Include="Dto\FollowingDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,8 +228,13 @@
     <Compile Include="Migrations\201912071819432_AddAttendance.Designer.cs">
       <DependentUpon>201912071819432_AddAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912072139266_AddFollowing.cs" />
+    <Compile Include="Migrations\201912072139266_AddFollowing.Designer.cs">
+      <DependentUpon>201912072139266_AddFollowing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Following.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
@@ -334,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912071819432_AddAttendance.resx">
       <DependentUpon>201912071819432_AddAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912072139266_AddFollowing.resx">
+      <DependentUpon>201912072139266_AddFollowing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

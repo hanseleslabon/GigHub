@@ -11,3 +11,4 @@ GigHub/bin/GigHub.dll
 *.txt
 *.dll
 GigHub/bin/
+GigHub/obj/

@@ -1,4 +1,5 @@
-﻿using GigHub.Models;
+﻿using GigHub.Dto;
+using GigHub.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,7 @@ using System.Web.Http;
 
 namespace GigHub.Controllers
 {
-    public class AttendanceDto
-    {
-        public int GigId { get; set; }
-    }
-
+    
     [Authorize]
     public class AttendancesController : ApiController
     {

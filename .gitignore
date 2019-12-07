@@ -3,3 +3,6 @@ GigHub/bin/GigHub.dll
 *.pdb
 *.config
 *.dll
+.vs/GigHub/v15/Server/sqlite3/storage.ide-shm
+.vs/GigHub/v15/Server/sqlite3/storage.ide-shm
+.vs/GigHub/v15/.suo

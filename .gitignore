@@ -6,3 +6,8 @@ GigHub/bin/GigHub.dll
 .vs/GigHub/v15/Server/sqlite3/storage.ide-shm
 .vs/GigHub/v15/Server/sqlite3/storage.ide-shm
 .vs/GigHub/v15/.suo
+*.txt
+*.cache
+*.txt
+*.dll
+GigHub/bin/

@@ -114,3 +114,13 @@ C:\Users\Zell\source\repos\GigHub\GigHub\obj\Debug\GigHub.Migrations.OverrideCon
 C:\Users\Zell\source\repos\GigHub\GigHub\obj\Debug\GigHub.Migrations.PopulateGenresTable.resources
 C:\Users\Zell\source\repos\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddForeignKeyPropertiesToGig.resources
 C:\Users\Zell\source\repos\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddNameToApplicationUser.resources
+C:\Users\Zell\source\repos\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddAttendance.resources
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\System.Net.Http.Formatting.dll
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\System.Web.Http.dll
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\System.Web.Http.WebHost.dll
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\System.Net.Http.Formatting.xml
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\System.Web.Http.xml
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\System.Web.Http.WebHost.xml
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\Microsoft.Owin.Cors.dll
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\System.Web.Cors.dll
+C:\Users\Zell\source\repos\GigHub\GigHub\bin\Microsoft.Owin.Cors.xml

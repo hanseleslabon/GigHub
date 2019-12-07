@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,6 +15,15 @@ namespace GigHub.Models
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
+
+        public ICollection<Following> Followers { get; set; }
+        public ICollection<Following> Followees { get; set; }
+
+        public ApplicationUser()
+        {
+            Followees = new Collection<Following>();
+            Followers = new Collection<Following>();
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -44,7 +55,16 @@ namespace GigHub.Models
         {
             modelBuilder.Entity<Attendance>().HasRequired(a => a.Gig)
                 .WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<Following>().HasRequired(u => u.Followee).WithMany().WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Followees)
+                .WithRequired(f=>f.Followee)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApplicationUser>()
+               .HasMany(u => u.Followees)
+               .WithRequired(f=>f.Follower)
+               .WillCascadeOnDelete(false);
             base.OnModelCreating(modelBuilder);
         }
     }

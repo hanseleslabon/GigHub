@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201912072139266_AddFollowing.Designer.cs">
       <DependentUpon>201912072139266_AddFollowing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912072232339_AddFollowing1.cs" />
+    <Compile Include="Migrations\201912072232339_AddFollowing1.Designer.cs">
+      <DependentUpon>201912072232339_AddFollowing1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
@@ -241,6 +245,7 @@
     <Compile Include="ViewModels\ForgotViewModel.cs" />
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
@@ -345,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912072139266_AddFollowing.resx">
       <DependentUpon>201912072139266_AddFollowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912072232339_AddFollowing1.resx">
+      <DependentUpon>201912072232339_AddFollowing1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

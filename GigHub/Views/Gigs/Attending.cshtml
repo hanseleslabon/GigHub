@@ -1,9 +1,11 @@
-﻿@model GigHub.ViewModels.HomeViewModel
-
+﻿@model GigHub.ViewModels.GigsViewModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Attending";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Attending</h2>
 
 <ul class="gigs">
     @foreach (var gig in Model.UpcomingGigs)
@@ -44,32 +46,3 @@
 
 </ul>
 
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
-            $(".js-toggle-attendance").click(function (e) {
-                var button = $(e.target);
-                $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
-                    .done(function () {
-                        button.removeClass("btn-default")
-                            .addClass("btn-info").text("Going");
-                    })
-                    .fail(function () {
-                        alert("Something Failed");
-                    });
-            });
-
-            $(".js-toggle-following").click(function (e) {
-                var button = $(e.target);
-                $.post("/api/following", { FolloweeId: button.attr("data-artist-id") })
-                    .done(function () {
-                        button.text("following");
-                    })
-                    .fail(function () {
-                        alert("Something Failed");
-                    });
-            });
-        });
-    </script>
-}

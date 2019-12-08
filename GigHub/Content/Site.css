@@ -28,7 +28,22 @@ textarea {
     font-weight: bold;
 }
 
+.voffset {
+    margin-top: 2px;
+}
 
+.voffset1 {
+    margin-top: 2px;
+}
+.voffset2 {
+    margin-top: 5px;
+}
+.voffset3 {
+    margin-top: 10px;
+}
+.voffset4 {
+    margin-top: 20px;
+}
 /* Boostrap Overrides */
 .navbar-inverse {
     background-color: #ff4342;

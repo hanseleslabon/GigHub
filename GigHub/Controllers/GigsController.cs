@@ -46,7 +46,7 @@ namespace GigHub.Controllers
             };
             return View("Gigs",viewModel);
         }
-
+     
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

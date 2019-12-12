@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace GigHub.Controllers
@@ -20,6 +19,7 @@ namespace GigHub.Controllers
             _context = new ApplicationDbContext();
         }
 
+        [HttpPost]
         public IHttpActionResult Follow(FollowingDto dto)
         {
             var userId = User.Identity.GetUserId();
@@ -43,5 +43,7 @@ namespace GigHub.Controllers
 
             return Ok();
         }
+
+
     }
 }

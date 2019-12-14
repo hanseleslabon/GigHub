@@ -92,9 +92,9 @@ body,.h1, .h2, .h3, .h4, .h5, .h6 {
 
 .form-control {
     font-size: 17px;
-  padding: 20px 15px;
-  -ms-border-radius: 9px;
-  border-radius: 9px;
+    height: 44px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
 }
 
 .form-control:focus {
@@ -159,4 +159,13 @@ body,.h1, .h2, .h3, .h4, .h5, .h6 {
 
     .gigs > li .genre {
        font-size: 15px;
+    }
+
+    .gigs > li  .action {
+    font-size: 15px;
+    display:none;
+    }
+    .gigs > li:hover .action {
+        font-size: 15px;
+        display: block;
     }

@@ -316,6 +316,7 @@
     <Content Include="Views\Gigs\Create.cshtml" />
     <Content Include="Views\Gigs\Attending.cshtml" />
     <Content Include="Views\Shared\Following.cshtml" />
+    <Content Include="Views\Gigs\Mine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

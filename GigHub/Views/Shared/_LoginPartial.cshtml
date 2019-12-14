@@ -3,25 +3,25 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-<ul class="nav navbar-nav navbar-right">
-  
-     <li class="nav-item dropdown">
-        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            @User.Identity.GetUserName()
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-                <a class="dropdown-item" href="@Url.Action("Attending", "Gigs")">Gigs I'm Going</a>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @User.Identity.GetUserName()
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="@Url.Action("Mine", "Gigs")">My Upcoming Gigs</a></li>
+                    <li>
+                        <a class="dropdown-item" href="@Url.Action("Attending", "Gigs")">Gigs I'm Going</a>
+                    </li>
+                    <li><a class="dropdown-item" href="@Url.Action("Index", "Followees")">Gigs I'm following</a></li>
+                    <li class="separator"></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
             </li>
-            <li><a class="dropdown-item" href="@Url.Action("Index", "Followees")">Gigs I'm following</a></li>
-            <li class="separator"></li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-
         </ul>
-    </li>
-</ul>
     }
 }
 else

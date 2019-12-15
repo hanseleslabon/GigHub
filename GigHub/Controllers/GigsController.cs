@@ -20,7 +20,9 @@ namespace GigHub.Controllers
         public ActionResult Mine()
         {
             var userId = User.Identity.GetUserId();
-            var gigs = _context.Gigs.Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now)
+            var gigs = _context.Gigs.Where(g => g.ArtistId == userId 
+                                                && g.DateTime > DateTime.Now 
+                                                && !g.IsCanceled)
                  .Include(g=>g.Genre)
                 .ToList();
 
@@ -57,6 +59,8 @@ namespace GigHub.Controllers
             return View("GigForm", viewModel);
         }
 
+
+
         [Authorize]
         public ActionResult Attending()
         {
@@ -75,6 +79,24 @@ namespace GigHub.Controllers
                 Heading ="Attending"
             };
             return View("Gigs",viewModel);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var gig = _context.Gigs.FirstOrDefault(g => g.Id == id && g.ArtistId == userId);
+
+            if (gig == null)
+            {
+             
+            }
+
+            gig.IsCanceled = true;
+            _context.SaveChanges();
+
+
+            return Mine();
         }
 
         [Authorize]

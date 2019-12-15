@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<GigHub.Models.Gig>
- 
+
 
 @{
     ViewBag.Title = "Mine";
@@ -22,17 +22,65 @@
             </div>
             <div class="details">
                 <span class="artist">
-                    @gig.Venue              
+                    @gig.Venue
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
                 <div class="action">
-                    <a href="@Url.Action("Edit","Gigs", new { id= gig.Id })">Edit</a>
+                    <a href="@Url.Action("Edit","Gigs", new { id= gig.Id })">Edit</a> |
+                    <a href="#" class="js-cancel-gig" data-gig-id="@gig.Id">Cancel</a>
                 </div>
-              
+
             </div>
         </li>
     }
 
 </ul>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+
+            $(".js-cancel-gig").click(function (e) {
+                var link = $(e.target);
+
+
+            bootbox.dialog({
+                    title: 'Confirm',
+                    message: "Are you sure you want to cancel this gig?",
+                    size: 'large',
+                    buttons: {
+                        yes: {
+                            label: "Yes",
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                    url: "/api/gigs/" + link.attr("data-gig-id"),
+                                    method: "Delete"
+                                })
+                                    .done(function () {
+                                        link.parents("li").fadeOut(function () {
+                                            $(this).remove();
+                                        });
+                                    })
+                                    .fail(function () {
+                                        alert("something failed!");
+                                    });
+                            }
+                        },
+                        no: {
+                            label: "No",
+                            className: 'btn-default',
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
+}

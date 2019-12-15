@@ -56,6 +56,9 @@ namespace GigHub.Controllers
                 Heading = "Edit a Gig",
                 Id = gig.Id,
             };
+
+            gig.Modify(viewModel.GetDateTime(), viewModel.Venue, viewModel.Genre);
+
             return View("GigForm", viewModel);
         }
 
@@ -80,25 +83,7 @@ namespace GigHub.Controllers
             };
             return View("Gigs",viewModel);
         }
-
-        public ActionResult Delete(int id)
-        {
-            var userId = User.Identity.GetUserId();
-
-            var gig = _context.Gigs.FirstOrDefault(g => g.Id == id && g.ArtistId == userId);
-
-            if (gig == null)
-            {
-             
-            }
-
-            gig.IsCanceled = true;
-            _context.SaveChanges();
-
-
-            return Mine();
-        }
-
+     
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

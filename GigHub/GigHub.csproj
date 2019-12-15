@@ -242,9 +242,20 @@
     <Compile Include="Migrations\201912152025121_AddIsCancelToGig.Designer.cs">
       <DependentUpon>201912152025121_AddIsCancelToGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912152146551_AddNotification.cs" />
+    <Compile Include="Migrations\201912152146551_AddNotification.Designer.cs">
+      <DependentUpon>201912152146551_AddNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912152311101_RenameNotificationVenue.cs" />
+    <Compile Include="Migrations\201912152311101_RenameNotificationVenue.Designer.cs">
+      <DependentUpon>201912152311101_RenameNotificationVenue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
@@ -366,6 +377,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912152025121_AddIsCancelToGig.resx">
       <DependentUpon>201912152025121_AddIsCancelToGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912152146551_AddNotification.resx">
+      <DependentUpon>201912152146551_AddNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912152311101_RenameNotificationVenue.resx">
+      <DependentUpon>201912152311101_RenameNotificationVenue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

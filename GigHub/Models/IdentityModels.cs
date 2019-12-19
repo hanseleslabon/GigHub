@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
+using GigHub.App_Start;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -41,6 +43,22 @@ namespace GigHub.Models
         {
             UserNotifications.Add(new UserNotification(this, notification));
         }
+    }
+
+    public class AutoMapperConfigContext
+    {
+        public IConfigurationProvider AutoMapperConfig
+        {
+            get { return  _config;}
+        }
+
+        private readonly IConfigurationProvider _config;
+        public AutoMapperConfigContext()
+        {
+             _config = new MapperConfiguration(cfg => {
+                cfg.AddProfile<AutoMapperProfile>();
+            });
+        }  
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

@@ -42,8 +42,55 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)
+
+    <script type="text/x-template" id="notifications-template">
+        <ul class="notifications">
+            <%
+            _.each(notifications, function(notification){
+                if(notification.type ==1)  {%>
+                <li ><span class="highlight"><%= notification.gig.artist.name %></span> has canceled the gig at <%=  notification.gig.venue.name%> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %></li>
+                <%  }
+                if(notification.type ==2)  {%>
+                <li><span class="highlight"><%= notification.gig.artist.name %></span> has updated the gig at <%=  notification.gig.venue.name%> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm")  %></li>
+                <%  }
+                if(notification.type ==3)  {%>
+                <li><span class="highlight"><%= notification.gig.artist.name %></span> has created the gig at <%=  notification.gig.venue.name%> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %></li>
+                <%  }
+            })
+            %>
+        </ul>
+    </script>
+
+    <script>
+        $(document).ready(function () {
+           
+            $.getJSON("api/notification", function (notifications) {
+                if (notifications.length == 0)
+                    return;
+                $(".js-notifications-count")
+                    .text(notifications.length)
+                    .removeClass("hide")
+                    .addClass("bounceInDown animate");
+
+                $(".notifications").popover({
+                    html: true,
+                    title: "Notifications",
+                    content: function () {
+                        var compiled = _.template($("#notifications-template").html());
+                        return   compiled({
+                            notifications: notifications
+                    });
+
+                    },
+                    placement: "bottom",
+                    template: '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-content"></div></div>'
+                }).on('hidden.bs.popover', function () {
+                    console.log("shown");
+                });
+            });         
+        });
+    </script>
 </body>
 </html>

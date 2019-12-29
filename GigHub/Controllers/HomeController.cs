@@ -1,5 +1,6 @@
 ﻿using GigHub.Models;
 using GigHub.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,22 +19,42 @@ namespace GigHub.Controllers
             _context = new ApplicationDbContext();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
             var upComingGigs = _context.Gigs
-                .Include(g=>g.Artist)
-                .Include(g=>g.Genre)
-                .Where(g=>g.DateTime > DateTime.Now && !g.IsCanceled);
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
 
-   
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                upComingGigs = upComingGigs.Where(g => g.Artist.Name.Contains(query) ||
+                  g.Venue.Contains(query) || g.Genre.Name.Contains(query));
+            }
+
+            var userId = User.Identity.GetUserId();
+
+            var attendances = _context.Attendances.Where
+                (a => a.AttendeeId == userId && a.Gig.DateTime > DateTime.Now).ToList()
+                .ToLookup(a => a.GigId);
+
+            var followings = _context.Followings
+                .Where (a => a.FollowerID == userId)
+                .Select(f => f.Followee)
+                .ToList()
+                .ToLookup(a => a.Id);
+
             var viewModel = new GigsViewModel()
             {
                 UpcomingGigs = upComingGigs,
                 ShowActions = User.Identity.IsAuthenticated,
-                Heading= "Upcoming Gigs"
+                Heading = "Upcoming Gigs",
+                SearchTerm = query,
+                Attendances = attendances,
+                Followings = followings,
             };
 
-            return View("Gigs",viewModel);
+            return View("Gigs", viewModel);
         }
 
         public ActionResult About()

@@ -1,0 +1,73 @@
+﻿
+@model GigHub.ViewModels.GigsDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>
+    @Model.Gig.Artist.Name
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (Model.IsFollowing)
+        {
+            <button data-artist-id="@Model.Gig.ArtistId" class="btn btn-primary btn-sm js-toggle-following">
+                Following
+            </button>
+        }
+        else
+        {
+            <button data-artist-id="@Model.Gig.ArtistId" class="btn btn-primary btn-sm js-toggle-following">
+                Follow?
+            </button>
+        }
+
+    }
+</h2>
+<p>
+    Performing at @Model.Gig.Venue on @Model.Gig.DateTime.ToString("dd MMM") at @Model.Gig.DateTime.ToString("HH:mm")
+</p>
+
+
+@if (User.Identity.IsAuthenticated && Model.IsAttending)
+{
+    <p>You are going to this event.</p>
+}
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-following").click(function (e) {
+                var button = $(e.target);
+                if (button.text().trim() === "Follow?") {
+                    $.post("/api/following", { FolloweeId: button.attr("data-artist-id") })
+                        .done(function () {
+                            button.text("Following");
+                        })
+                        .fail(function () {
+                            alert("Something Failed");
+                        });
+                }
+                else {
+                    $.ajax({
+                        url: "/api/following/" + button.attr("data-artist-id"),
+                        method: "DELETE"
+                    })
+                        .done(function () {
+                            button
+                                .text("Follow?");
+                        })
+                        .fail(function () {
+                            alert("Something Failed");
+                        });
+                }
+            });
+        });
+    </script>
+}
+
+

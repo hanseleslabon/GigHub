@@ -24,12 +24,12 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var result = _context.Followings.Any
+            var result = _context.Followings.SingleOrDefault
                 (f => f.FolloweeId == dto.FolloweeId && f.FollowerID == userId);
 
-            if (result)
+            if (result != null)
             {
-                return BadRequest("You are already following this artist");
+                return NotFound();
             }
 
             var follow = new Following()
@@ -42,6 +42,24 @@ namespace GigHub.Controllers.Api
             _context.SaveChanges();
 
             return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteFollowing(string id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var following = _context.Followings.SingleOrDefault(a => a.FolloweeId  == id && a.FollowerID == userId);
+
+            if (following == null)
+            {
+                return NotFound();
+            }
+
+            _context.Followings.Remove(following);
+            _context.SaveChanges();
+
+            return Ok(id);
         }
 
 

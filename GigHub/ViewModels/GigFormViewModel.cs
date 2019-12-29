@@ -31,6 +31,8 @@ namespace GigHub.ViewModels
 
         public IEnumerable<Genre> Genres { get; set; }
 
+        public string Artist { get; set; }
+
         public string Heading { get; set; }
 
         public int Id { get; set; }

@@ -265,6 +265,10 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\NotificationType.cs" />
     <Compile Include="Models\UserNotification.cs" />
+    <Compile Include="Repository\AttendanceRepository.cs" />
+    <Compile Include="Repository\FollowingRepository.cs" />
+    <Compile Include="Repository\GenreRepository.cs" />
+    <Compile Include="Repository\GigRepository.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />

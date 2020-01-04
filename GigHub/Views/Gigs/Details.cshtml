@@ -41,31 +41,7 @@
 {
     <script>
         $(document).ready(function () {
-            $(".js-toggle-following").click(function (e) {
-                var button = $(e.target);
-                if (button.text().trim() === "Follow?") {
-                    $.post("/api/following", { FolloweeId: button.attr("data-artist-id") })
-                        .done(function () {
-                            button.text("Following");
-                        })
-                        .fail(function () {
-                            alert("Something Failed");
-                        });
-                }
-                else {
-                    $.ajax({
-                        url: "/api/following/" + button.attr("data-artist-id"),
-                        method: "DELETE"
-                    })
-                        .done(function () {
-                            button
-                                .text("Follow?");
-                        })
-                        .fail(function () {
-                            alert("Something Failed");
-                        });
-                }
-            });
+            ArtistController.init();
         });
     </script>
 }

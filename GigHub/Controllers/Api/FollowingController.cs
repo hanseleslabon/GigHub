@@ -1,10 +1,9 @@
-﻿using GigHub.Dto;
-using GigHub.Models;
+﻿using GigHub.Core;
+using GigHub.Core.Dto;
+using GigHub.Core.Models;
+using GigHub.Persistence;
 using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 
 namespace GigHub.Controllers.Api
@@ -12,11 +11,11 @@ namespace GigHub.Controllers.Api
     [Authorize]
     public class FollowingController : ApiController
     {
-        ApplicationDbContext _context;
+        private IUnitOfWork _unitOfWork;
 
-        public FollowingController()
+        public FollowingController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost]
@@ -24,9 +23,8 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var result = _context.Followings.SingleOrDefault
-                (f => f.FolloweeId == dto.FolloweeId && f.FollowerID == userId);
-
+            var result = _unitOfWork.Following.GetFollowings(dto.FolloweeId, userId);
+                
             if (result != null)
             {
                 return NotFound();
@@ -38,8 +36,8 @@ namespace GigHub.Controllers.Api
                 FollowerID = userId
             };
 
-            _context.Followings.Add(follow);
-            _context.SaveChanges();
+            _unitOfWork.Following.Add(follow);
+            _unitOfWork.Complete();
 
             return Ok();
         }
@@ -47,17 +45,15 @@ namespace GigHub.Controllers.Api
         [HttpDelete]
         public IHttpActionResult DeleteFollowing(string id)
         {
-            var userId = User.Identity.GetUserId();
-
-            var following = _context.Followings.SingleOrDefault(a => a.FolloweeId  == id && a.FollowerID == userId);
+            var following = _unitOfWork.Following.GetFollowings(id, User.Identity.GetUserId());
 
             if (following == null)
             {
                 return NotFound();
             }
 
-            _context.Followings.Remove(following);
-            _context.SaveChanges();
+            _unitOfWork.Following.Remove(following);
+            _unitOfWork.Complete();
 
             return Ok(id);
         }

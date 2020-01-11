@@ -12,17 +12,15 @@ namespace GigHub.Core.Models
 
         public ApplicationUser Artist { get; set; }
 
-        [Required]
+
         public string ArtistId { get; set; }
 
         public DateTime DateTime { get; set; }
 
-        [Required]
-        [StringLength(255)]
         public string Venue { get; set; }
 
-        [Required]
         public byte GenreId { get; set; } 
+
         public Genre Genre { get; set; }
 
         public bool IsCanceled { get; private set; }
@@ -33,7 +31,7 @@ namespace GigHub.Core.Models
             Attendances = new Collection<Attendance>();
         }
 
-        internal void Canceled()
+        public void Canceled()
         {
             IsCanceled = true;
 
@@ -45,7 +43,7 @@ namespace GigHub.Core.Models
             }
         }
 
-        internal void Modify(DateTime dateTime, string venue, byte Genre)
+        public void Modify(DateTime dateTime, string venue, byte Genre)
         {
             var notification = Notification.GigUpdated(this, dateTime, venue);
 

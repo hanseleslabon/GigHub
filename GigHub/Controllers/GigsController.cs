@@ -16,7 +16,8 @@ namespace GigHub.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public ActionResult Mine()
+        [Authorize]
+        public ViewResult Mine()
         {
             return View(_unitOfWork.Gigs.GetArtistUpcomingGig(User.Identity.GetUserId()));
         }

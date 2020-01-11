@@ -15,12 +15,12 @@ namespace GigHub.Core.Models
         [Required]
         public Gig Gig { get; private set; }
 
-        protected Notification()
+        public Notification()
         {
 
         }
 
-        private Notification(NotificationType type, Gig gig)
+        public Notification(NotificationType type, Gig gig)
         {
             Gig = gig ?? throw new ArgumentNullException("Gig");
             Type = Type ;

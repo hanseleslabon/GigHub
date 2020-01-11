@@ -13,11 +13,11 @@ namespace GigHub.Persistence.Repositories
 {
     public class NotificationRepository : INotificationRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
         private readonly IConfigurationProvider _configMapper;
 
         //TODO refactor autoMapper
-        public NotificationRepository(ApplicationDbContext context)
+        public NotificationRepository(IApplicationDbContext context)
         {
             _context = context;
             _configMapper = new AutoMapperConfigContext().AutoMapperConfig;
